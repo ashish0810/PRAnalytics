@@ -1,0 +1,3 @@
+Google Cloud Natural Language API key:
+
+AIzaSyCRkHZ7wwR6xsxayK-o3Ha9NPZcTtYAKGo
