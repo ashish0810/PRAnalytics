@@ -18,8 +18,10 @@ function getNews(companyName) {
 		if (data.status == "ok") {
 			var s = "";
 			var i;
+			clearArticles();
 			for (i = 0; i < data.articles.length; i++) {
 				s += data.articles[i].title + ". ";
+				// var x = getSentiment(data.articles[i].description);
 				addArticle(data.articles[i]);
 			}
 			getSentiment(s);
@@ -28,29 +30,49 @@ function getNews(companyName) {
 	})
 }
 
+function clearArticles() {
+	document.getElementById("articleWrapper").innerHTML = "";
+}
+
 function addArticle(article) {
-	var fart = "<div class='article'><h3 class='articleTitle'><a href='" + article.url + "'>" + article.title + "</a></h3><p>" + article.description + "</p></div>";
-	document.getElementById("content").innerHTML += fart;
+	var fart = "<div class='article'><h3 class='articleTitle'><a href='" + article.url + "'>" + article.title + "</a></h3><p class='articleDescription'>" + article.description + "</p></div>";
+	document.getElementById("articleWrapper").innerHTML += fart;
 }
 
 function getSentiment(s) {
-	console.log(s);
+	// console.log(s);
 	$.ajax({
 		type: "POST",
 		url: "https://language.googleapis.com/v1/documents:analyzeSentiment?fields=documentSentiment%2Clanguage%2Csentences&key=AIzaSyCRkHZ7wwR6xsxayK-o3Ha9NPZcTtYAKGo",
-		data: {
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		data: JSON.stringify({
 			'document': {
 				'content': s,
 				'type': 'PLAIN_TEXT'
 			},
 			'encodingType': 'UTF8'
-		},
+		}),
 		success: function(data) {
 			console.log(data);
+			console.log("The sentiment score is: " + data.documentSentiment.score);
+			displayScore(data.documentSentiment.score);
 		},
 		error: function(jqXHR, exception) {
 			console.log(jqXHR);
 			console.log(exception);
 		}
 	});
+}
+
+function displayScore(x) {
+	var color = "yellow";
+	if (x < -0.25) {
+		color = "red";
+	} else if (x > 0.25) {
+		color = "green";
+	}
+	var score = (x+1)*5;
+	document.getElementById("scoreWrapper").innerHTML = "<h3 style='color: " + color + "'>" + score + " out of 10</h3>";
 }
