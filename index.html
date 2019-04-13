@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="src/scripts.js"></script>
 	<script type="text/javascript" src="src/autocomplete.js"></script>
 	<link rel="stylesheet" href="src/style.css">
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 </head>
 
 <body>
@@ -17,7 +18,10 @@
 		</div>
 		<div id="search">
 			<form action="javascript:runAnalysis()">
-				<input id="searchBar" type="text" name="compname" onchange="updateSuggestions()">
+				<div class="autocomplete">
+					<input id="searchBar" type="text" name="compname" onchange="updateSuggestions()">
+					<div id="autocomplete-list"></div>
+				</div>
 				<input class="button" type="submit" value="Search">
 			</form>
 		</div>
@@ -27,6 +31,9 @@
 	<div id="contentWrapper">
 		<!-- <div id="scoreWrapper"></div> -->
 		<div id="articleWrapper"></div>
+		<div id="footer">
+			<p>Using NewsAPI and Google Cloud Natural Language API</p>
+		</div>
 	</div>
 
 </body>

@@ -4,7 +4,7 @@ function runAnalysis() {
 }
 
 function getNews(companyName) {
-	var url = 'https://newsapi.org/v2/everything?q=' + companyName + '&apiKey=124a2a2d87434a7abdb39858a824ef8a';
+	var url = 'https://newsapi.org/v2/everything?q=\"' + companyName + '\"&apiKey=124a2a2d87434a7abdb39858a824ef8a';
 	// var req = new Request(url);
 	// var response = await fetch(url);
 	// var data = await response.json();
@@ -77,5 +77,5 @@ function displayScore(x) {
 	var score = (x+1)*5;
 	var gradeInd = score*2;
 	var grade = gradesLookup[gradeInd];
-	document.getElementById("scoreWrapper").innerHTML = "<h3 style='color: " + color + "'>" + grade + "<br />" + score + " out of 10</h3>";
+	document.getElementById("scoreWrapper").innerHTML = "<h1 style='color: " + color + "; margin: 0; padding: 0;'>" + grade + "</h1><h3 style='color: " + color + "; margin: 0; padding: 0;'>" + score + " out of 10</h3>";
 }
