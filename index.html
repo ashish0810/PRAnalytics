@@ -17,10 +17,9 @@
 			<span>Giving Value to News</span>
 		</div>
 		<div id="search">
-			<form action="javascript:runAnalysis()">
+			<form autocomplete="off" action="javascript:runAnalysis()">
 				<div class="autocomplete">
-					<input id="searchBar" type="text" name="compname" onchange="updateSuggestions()">
-					<div id="autocomplete-list"></div>
+					<input id="searchBar" type="text" name="compname" onChange="updateSuggestions()">
 				</div>
 				<input class="button" type="submit" value="Search">
 			</form>
@@ -35,6 +34,10 @@
 			<p>Using NewsAPI and Google Cloud Natural Language API</p>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		autocomplete(document.getElementById("searchBar"));
+	</script>
 
 </body>
 </html>
