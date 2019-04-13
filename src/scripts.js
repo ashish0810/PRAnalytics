@@ -68,11 +68,14 @@ function getSentiment(s) {
 
 function displayScore(x) {
 	var color = "yellow";
+	var gradesLookup = ["F", "F", "D-", "D", "D+", "C-", "C", "C", "B-", "B-", "B", "B", "B", "B+", "B+", "A-", "A-", "A", "A", "A+", "A+"];
 	if (x < -0.25) {
 		color = "red";
 	} else if (x > 0.25) {
 		color = "green";
 	}
 	var score = (x+1)*5;
-	document.getElementById("scoreWrapper").innerHTML = "<h3 style='color: " + color + "'>" + score + " out of 10</h3>";
+	var gradeInd = score*2;
+	var grade = gradesLookup[gradeInd];
+	document.getElementById("scoreWrapper").innerHTML = "<h3 style='color: " + color + "'>" + grade + "<br />" + score + " out of 10</h3>";
 }
