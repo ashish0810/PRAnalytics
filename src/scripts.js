@@ -1,9 +1,10 @@
 function runAnalysis() {
-
+	var companyName = document.getElementById("searchBar").value;
+	getNews(companyName);
 }
 
 function getNews(companyName) {
-	var url = 'https://newsapi.org/v2/top-headlines?q=' + companyName + '&apiKey=124a2a2d87434a7abdb39858a824ef8a';
+	var url = 'https://newsapi.org/v2/everything?q=' + companyName + '&apiKey=124a2a2d87434a7abdb39858a824ef8a';
 	// var req = new Request(url);
 	// var response = await fetch(url);
 	// var data = await response.json();
@@ -19,11 +20,17 @@ function getNews(companyName) {
 			var i;
 			for (i = 0; i < data.articles.length; i++) {
 				s += data.articles[i].title + ". ";
+				addArticle(data.articles[i]);
 			}
 			getSentiment(s);
 		}
 		console.log(data);
 	})
+}
+
+function addArticle(article) {
+	var fart = "<div class='article'><h3 class='articleTitle'><a href='" + article.url + "'>" + article.title + "</a></h3><p>" + article.description + "</p></div>";
+	document.getElementById("content").innerHTML += fart;
 }
 
 function getSentiment(s) {

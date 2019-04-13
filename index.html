@@ -9,20 +9,20 @@
 </head>
 
 <body>
-	<div class= "header">
-		<h1>PRAnalytics</h1>
+	<div id="header">
+		<div id="logo">
+			<h1 id="title">PRAnalytics</h1>
+			<span>Check the latest headlines for a company!</span>
+		</div>
+		<div id="search">
+			<form action="javascript:runAnalysis()">
+				<input id="searchBar" type="text" name="compname">
+				<input class="button" type="submit" value="Search">
+			</form>
+		</div>
 	</div>
 
-	<div class= "searchbar">
-		<form action="javascript:runAnalysis()">
-			Check the latest headlines for a company!<br> Search for a company:<br>
-			<input type= "text" name= "compname">
-			<input type="submit" value="search">
-		</form>
-	</div>
-
-	<div class= "articles">
-
+	<div id="content">
 	</div>
 
 </body>
