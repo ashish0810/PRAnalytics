@@ -1,5 +1,6 @@
 function runAnalysis() {
 	var companyName = document.getElementById("searchBar").value;
+	document.getElementById("scoreWrapper").innerHTML = "<h3 style='color: white; margin: 0; padding: 0;'>loading...</h3>";
 	getNews(companyName);
 }
 
@@ -23,7 +24,10 @@ function getNews(companyName) {
 				}
 				displayScoreV2(sum);
 				// getSentiment(s);
+			} else {
+				document.getElementById("scoreWrapper").innerHTML = "";
 			}
+			
 		}
 	});
 	// fetch(url)

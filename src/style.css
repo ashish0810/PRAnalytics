@@ -174,3 +174,16 @@ input[type=text]:focus {
 	background-color: DodgerBlue !important; 
 	color: #ffffff;
 }
+
+#loading {
+	position: fixed;
+	z-index: 500;
+	display: none;
+	height: 40vh;
+	width: auto;
+	box-sizing: border-box;
+	padding: 0;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 30vh;
+}
