@@ -13,11 +13,9 @@ function getStocks(symbol){
 	high = resp["high"];
 	low = resp["low"];
 
-	displayStock(close, high, low)
+	displayStock(symbol, close, high, low)
 }
 
-function displayStock(close, high, low){
-	document.getElementById("stockWrapper").innerHTML = "<h3 style= color: white; margin: 0; padding: 0;>Closing Price: $" + close + 
-		"</h3><h3 style= color: green; margin: 0; padding: 0;>High: $" + high + 
-			"</h3><h3 style= color: red; margin: 0; padding: 0;>Low: $" + low + "</h3>";
+function displayStock(ticker, close, high, low){
+	document.getElementById("stockWrapper").innerHTML = "<h3 style='color: white; margin: 0; padding: 0;'>" + ticker + "    Closing Price: $" + close + "    High: $" + high + "    Low: $" + low + "</h3>";
 }

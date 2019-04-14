@@ -45,21 +45,22 @@ body {
 	display: inline-block;
 }
 
-#scoreWrapper {
+#rightAlign {
 	position: fixed;
 	z-index: 150;
 	top: 0;
 	right: 0;
 	padding: 10px;
+	display: block;
+}
+
+#scoreWrapper {
+	padding: 10px;
 	display: inline-block;
 }
 
 #stockWrapper{
-	position: fixed;
-	z-index: 200;
 	padding: 10px;
-	top: 0;
-	right: 0;
 	display: inline-block;
 }
 

@@ -1,6 +1,7 @@
 function runAnalysis() {
 	var companyName = document.getElementById("searchBar").value;
 	document.getElementById("scoreWrapper").innerHTML = "<h3 style='color: white; margin: 0; padding: 0;'>loading...</h3>";
+	getTicker(companyName);
 	getNews(companyName);
 }
 
@@ -120,4 +121,15 @@ function displayScoreV2(x) {
 	var gradeInd = Math.floor(score/5);
 	var grade = gradesLookup[gradeInd];
 	document.getElementById("scoreWrapper").innerHTML = "<h1 style='color: " + color + "; margin: 0; padding: 0;'>" + grade + "</h1><h3 style='color: " + color + "; margin: 0; padding: 0;'>" + score + " out of 100</h3>";
+}
+
+function getTicker(searchVal) {
+	var url = 'https://www.alphavantage.co/query?function=SYMBOL_SEARCH&keywords=' + searchVal + '&apikey=KYJ63OHXTZUJ9Q4I';
+	var b;
+	fetch(url)
+	.then((resp) => resp.json())
+	.then(function(data) {
+		document.getElementById("stockWrapper").innerHTML = "";
+		getStocks(data.bestMatches[0]["1. symbol"]);
+	})
 }
