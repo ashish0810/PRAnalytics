@@ -5,29 +5,45 @@ function runAnalysis() {
 
 function getNews(companyName) {
 	var url = 'https://newsapi.org/v2/everything?q=\"' + companyName + '\"&apiKey=124a2a2d87434a7abdb39858a824ef8a';
-	// var req = new Request(url);
-	// var response = await fetch(url);
-	// var data = await response.json();
-	// return data;
-	// if (data.status == "ok") {
-	// 	return data.articles;
-	// }
-	fetch(url)
-	.then((resp) => resp.json())
-	.then(function(data) {
-		if (data.status == "ok") {
-			var s = "";
-			var i;
-			clearArticles();
-			for (i = 0; i < data.articles.length; i++) {
-				s += data.articles[i].title + ". ";
-				// var x = getSentiment(data.articles[i].description);
-				addArticle(data.articles[i]);
+	$.ajax({
+		type: "GET",
+		url: url,
+		async: false,
+		success: function(data) {
+			if (data.status == "ok") {
+				console.log("hello");
+				var s = "";
+				var i;
+				clearArticles();
+				var sum = 0;
+				for (i = 0; i < data.articles.length; i++) {
+					s += data.articles[i].title + ". ";
+					sum += getSentiment(data.articles[i].title);
+					addArticle(data.articles[i]);
+				}
+				displayScoreV2(sum);
+				// getSentiment(s);
 			}
-			getSentiment(s);
 		}
-		console.log(data);
-	})
+	});
+	// fetch(url)
+	// .then((resp) => resp.json())
+	// .then(function(data) {
+	// 	if (data.status == "ok") {
+	// 		var s = "";
+	// 		var i;
+	// 		clearArticles();
+	// 		var sum = 0;
+	// 		for (i = 0; i < data.articles.length; i++) {
+	// 			s += data.articles[i].title + ". ";
+	// 			sum += getSentiment(data.articles[i].title);
+	// 			addArticle(data.articles[i]);
+	// 		}
+	// 		displayScoreV2(sum);
+	// 		// getSentiment(s);
+	// 	}
+	// 	console.log(data);
+	// })
 }
 
 function clearArticles() {
@@ -39,11 +55,15 @@ function addArticle(article) {
 	document.getElementById("articleWrapper").innerHTML += fart;
 }
 
+var sum = 0;
+
 function getSentiment(s) {
 	// console.log(s);
+	var data =
 	$.ajax({
 		type: "POST",
 		url: "https://language.googleapis.com/v1/documents:analyzeSentiment?fields=documentSentiment%2Clanguage%2Csentences&key=AIzaSyCRkHZ7wwR6xsxayK-o3Ha9NPZcTtYAKGo",
+		async: false,
 		headers: {
 			'Content-Type': 'application/json'
 		},
@@ -55,15 +75,18 @@ function getSentiment(s) {
 			'encodingType': 'UTF8'
 		}),
 		success: function(data) {
-			console.log(data);
+			// console.log(data);
 			console.log("The sentiment score is: " + data.documentSentiment.score);
-			displayScore(data.documentSentiment.score);
+			// return data.documentSentiment.score;
+			// displayScore(data.documentSentiment.score);
 		},
 		error: function(jqXHR, exception) {
 			console.log(jqXHR);
 			console.log(exception);
 		}
 	});
+	var x = JSON.parse(data.responseText);
+	return x.documentSentiment.score;
 }
 
 function displayScore(x) {
@@ -78,4 +101,19 @@ function displayScore(x) {
 	var gradeInd = score*2;
 	var grade = gradesLookup[gradeInd];
 	document.getElementById("scoreWrapper").innerHTML = "<h1 style='color: " + color + "; margin: 0; padding: 0;'>" + grade + "</h1><h3 style='color: " + color + "; margin: 0; padding: 0;'>" + score + " out of 10</h3>";
+}
+
+function displayScoreV2(x) {
+	var color = "yellow";
+	var gradesLookup = ["F", "F", "D-", "D", "D+", "C-", "C", "C", "B-", "B-", "B", "B", "B", "B+", "B+", "A-", "A-", "A", "A", "A+", "A+"];
+	if (x < -5) {
+		color = "red";
+	} else if (x > 5) {
+		color = "green";
+	}
+	var score = (x+20)*2.5;
+	console.log("x is " + x + " and score is " + score);
+	var gradeInd = Math.floor(score/5);
+	var grade = gradesLookup[gradeInd];
+	document.getElementById("scoreWrapper").innerHTML = "<h1 style='color: " + color + "; margin: 0; padding: 0;'>" + grade + "</h1><h3 style='color: " + color + "; margin: 0; padding: 0;'>" + score + " out of 100</h3>";
 }
