@@ -1,5 +1,9 @@
 function runAnalysis() {
 	var companyName = document.getElementById("searchBar").value;
+	var n = companyName.search(" Inc.");
+	if (n > 0) {
+		companyName = companyName.substr(0, n);
+	}
 	document.getElementById("scoreWrapper").innerHTML = "<h3 style='color: white; margin: 0; padding: 0;'>loading...</h3>";
 	getTicker(companyName);
 	getNews(companyName);
