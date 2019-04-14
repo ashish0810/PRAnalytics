@@ -13,7 +13,11 @@ function getStocks(symbol){
 	high = resp["high"];
 	low = resp["low"];
 
-	console.log("Close: " + close);
-	console.log("High: " + high);
-	console.log("Low: " + low);
+	displayStock(close, high, low)
+}
+
+function displayStock(close, high, low){
+	document.getElementById("stockWrapper").innerHTML = "<h3 style= color: white; margin: 0; padding: 0;>Closing Price: $" + close + 
+		"</h3><h3 style= color: green; margin: 0; padding: 0;>High: $" + high + 
+			"</h3><h3 style= color: red; margin: 0; padding: 0;>Low: $" + low + "</h3>";
 }

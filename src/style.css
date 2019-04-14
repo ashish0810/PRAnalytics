@@ -54,6 +54,15 @@ body {
 	display: inline-block;
 }
 
+#stockWrapper{
+	position: fixed;
+	z-index: 200;
+	padding: 10px;
+	top: 0;
+	right: 0;
+	display: inline-block;
+}
+
 input[type=text] {
 	width: 400px;
 	height: auto;
