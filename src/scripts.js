@@ -1,6 +1,6 @@
 function runAnalysis() {
 	var companyName = document.getElementById("searchBar").value;
-	var n = companyName.search(" Inc.");
+	var n = companyName.search(" Inc");
 	if (n > 0) {
 		companyName = companyName.substr(0, n);
 	}
