@@ -17,5 +17,6 @@ function getStocks(symbol){
 }
 
 function displayStock(ticker, close, high, low){
-	document.getElementById("stockWrapper").innerHTML = "<h3 style='color: white; margin: 0; padding: 0;'>" + ticker + "    Closing Price: $" + close + "    High: $" + high + "    Low: $" + low + "</h3>";
+	document.getElementById("stockWrapper").innerHTML = "<a href='#' data-toggle='popover_stock' data-placement='left' data-trigger='focus' title='Stock info' data-content='Closing Price: $" + close + "\n\nHigh: $" + high + "\n\nLow: $" + low + "'>" + ticker + " Stock Info</a>";
+	$('[data-toggle="popover_stock"]').popover();
 }
