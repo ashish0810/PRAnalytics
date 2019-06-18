@@ -9,7 +9,7 @@ function runAnalysis() {
 }
 
 function getNews(companyName) {
-	var url = 'https://newsapi.org/v2/everything?q=\"' + companyName + '\"&apiKey=124a2a2d87434a7abdb39858a824ef8a';
+	var url = 'https://newsapi.org/v2/everything&q=\"' + companyName + '\"&apiKey=124a2a2d87434a7abdb39858a824ef8a';
 	$.ajax({
 		type: "GET",
 		url: url,
@@ -22,12 +22,12 @@ function getNews(companyName) {
 				clearArticles();
 				var sum = 0;
 				for (i = 0; i < data.articles.length; i++) {
-					s += data.articles[i].title + ". ";
-					// sum += getSentiment(data.articles[i].title);
+					// s += data.articles[i].title + ". ";
+					sum += getSentiment(data.articles[i].title);
 					addArticle(data.articles[i]);
 				}
-				// displayScoreV2(sum);
-				displayScore(getSentiment(s));
+				displayScoreV2(sum);
+				// displayScore(getSentiment(s));
 			} else {
 				document.getElementById("scoreWrapper").innerHTML = "";
 			}
