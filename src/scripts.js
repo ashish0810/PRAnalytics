@@ -9,7 +9,7 @@ function runAnalysis() {
 }
 
 function getNews(companyName) {
-	var url = 'https://newsapi.org/v2/everything&q=\"' + companyName + '\"&apiKey=124a2a2d87434a7abdb39858a824ef8a';
+	var url = 'https://newsapi.org/v2/everything?sortBy=popularity&q=\"' + companyName + '\"&apiKey=124a2a2d87434a7abdb39858a824ef8a';
 	$.ajax({
 		type: "GET",
 		url: url,
@@ -22,12 +22,12 @@ function getNews(companyName) {
 				clearArticles();
 				var sum = 0;
 				for (i = 0; i < data.articles.length; i++) {
-					// s += data.articles[i].title + ". ";
-					sum += getSentiment(data.articles[i].title);
-					addArticle(data.articles[i]);
+					s += data.articles[i].title + ". ";
+					// sum += getSentiment(data.articles[i].title);
+					printArticle(data.articles[i]);
 				}
-				displayScoreV2(sum);
-				// displayScore(getSentiment(s));
+				// displayScoreV2(sum);
+				displayScore(getSentiment(s));
 			} else {
 				document.getElementById("scoreWrapper").innerHTML = "";
 			}
@@ -40,7 +40,7 @@ function clearArticles() {
 	document.getElementById("articleWrapper").innerHTML = "";
 }
 
-function addArticle(article) {
+function printArticle(article) {
 	var content = "<div class='panel panel-default'><div class='panel-heading'><a href='" + article.url + "'>" + article.title + "</a></div><div class='panel-body'>" + article.description + "</div></div>";
 	// var fart = "<div class='article'><h3 class='articleTitle'><a href='" + article.url + "'>" + article.title + "</a></h3><p class='articleDescription'>" + article.description + "</p></div>";
 	document.getElementById("articleWrapper").innerHTML += content;
@@ -91,7 +91,7 @@ function displayScore(x) {
 	var score = (x+1)*5;
 	var gradeInd = score*2;
 	var grade = gradesLookup[gradeInd];
-	document.getElementById("scoreWrapper").innerHTML = "<a href='#' data-toggle='popover_score' data-placement='left' data-trigger='focus' title='Scoring' data-content='" + grade + "\n" + score + " out of 10'>" + grade + "</a><!--<h3 style='color: " + color + "; margin: 0; padding: 0;'>" + score + " out of 10</h3>-->";
+	document.getElementById("scoreWrapper").innerHTML = "<a href='#' data-toggle='popover_score' data-placement='left' data-trigger='focus' title='Scoring' data-content='" + grade + "\n" + score + " out of 10'>" + grade + "</a>";
 	$('[data-toggle="popover_score"]').popover();
 }
 
@@ -107,7 +107,8 @@ function displayScoreV2(x) {
 	console.log("x is " + x + " and score is " + score);
 	var gradeInd = Math.floor(score/5);
 	var grade = gradesLookup[gradeInd];
-	document.getElementById("scoreWrapper").innerHTML = "<h1 style='color: " + color + "; margin: 0; padding: 0;'>" + grade + "</h1><h3 style='color: " + color + "; margin: 0; padding: 0;'>" + score + " out of 100</h3>";
+	document.getElementById("scoreWrapper").innerHTML = "<a href='#' data-toggle='popover_score' data-placement='left' data-trigger='focus' title='Scoring' data-content='" + grade + "\n" + score + "out of 100'>" + grade + "</a>";
+	$('[data-toggle="popover_score"]').popover();
 }
 
 function getTicker(searchVal) {
