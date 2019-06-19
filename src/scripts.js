@@ -81,33 +81,33 @@ function getSentiment(s) {
 }
 
 function displayScore(x) {
-	var color = "yellow";
+	var color = "warning";
 	var gradesLookup = ["F", "F", "D-", "D", "D+", "C-", "C", "C", "B-", "B-", "B", "B", "B", "B+", "B+", "A-", "A-", "A", "A", "A+", "A+"];
 	if (x < -0.25) {
-		color = "red";
+		color = "danger";
 	} else if (x > 0.25) {
-		color = "green";
+		color = "success";
 	}
 	var score = (x+1)*5;
 	var gradeInd = score*2;
 	var grade = gradesLookup[gradeInd];
-	document.getElementById("scoreWrapper").innerHTML = "<a href='#' data-toggle='popover_score' data-placement='left' data-trigger='focus' title='Scoring' data-content='" + grade + "\n" + score + " out of 10'>" + grade + "</a>";
+	document.getElementById("scoreWrapper").innerHTML = "<button type='button' class='btn btn-" + color + " navbar-btn' data-toggle='popover_score' data-placement='left' data-trigger='focus' title='Scoring' data-content='" + grade + "\n" + score + " out of 10'>" + grade + "</button>";
 	$('[data-toggle="popover_score"]').popover();
 }
 
 function displayScoreV2(x) {
-	var color = "yellow";
+	var color = "warning";
 	var gradesLookup = ["F", "F", "D-", "D", "D+", "C-", "C", "C", "B-", "B-", "B", "B", "B", "B+", "B+", "A-", "A-", "A", "A", "A+", "A+"];
 	if (x < -5) {
-		color = "red";
+		color = "danger";
 	} else if (x > 5) {
-		color = "green";
+		color = "success";
 	}
 	var score = (x+20)*2.5;
 	console.log("x is " + x + " and score is " + score);
 	var gradeInd = Math.floor(score/5);
 	var grade = gradesLookup[gradeInd];
-	document.getElementById("scoreWrapper").innerHTML = "<a href='#' data-toggle='popover_score' data-placement='left' data-trigger='focus' title='Scoring' data-content='" + grade + "\n" + score + "out of 100'>" + grade + "</a>";
+	document.getElementById("scoreWrapper").innerHTML = "<button type='button' class='btn btn-" + color + " navbar-btn' data-toggle='popover_score' data-placement='left' data-trigger='focus' title='Scoring' data-content='" + grade + "\n" + score + "out of 100'>" + grade + "</button>";
 	$('[data-toggle="popover_score"]').popover();
 }
 

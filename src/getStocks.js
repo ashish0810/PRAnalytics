@@ -17,6 +17,6 @@ function getStocks(symbol){
 }
 
 function displayStock(ticker, close, high, low){
-	document.getElementById("stockWrapper").innerHTML = "<a href='#' data-toggle='popover_stock' data-placement='left' data-trigger='focus' title='Stock info' data-content='Closing Price: $" + close + "\n\nHigh: $" + high + "\n\nLow: $" + low + "'>" + ticker + " Stock Info</a>";
+	document.getElementById("stockWrapper").innerHTML = "<button type='button' class='btn btn-default navbar-btn' data-toggle='popover_stock' data-placement='left' data-trigger='focus' title='Stock info' data-content='Closing Price: $" + close + "\n\nHigh: $" + high + "\n\nLow: $" + low + "'>" + ticker + " Stock Info</button>";
 	$('[data-toggle="popover_stock"]').popover();
 }

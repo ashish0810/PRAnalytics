@@ -24,125 +24,6 @@
   -webkit-border-radius: 6px;
 }
 
-body {
-	padding: 0;
-	margin: 0;
-}
-
-#title {
-	font-size: 2em;
-	margin: 0;
-	padding: 0;
-}
-
-#logo {
-	display: inline-block;
-	margin-right: 40px;
-	margin-bottom: 10px;
-}
-
-#search {
-	display: inline-block;
-}
-
-#rightAlign {
-	position: fixed;
-	z-index: 150;
-	top: 0;
-	right: 0;
-	padding: 10px;
-	display: block;
-}
-
-#scoreWrapper {
-	padding: 10px;
-	display: inline-block;
-}
-
-#stockWrapper{
-	padding: 10px;
-	display: inline-block;
-}
-
-input[type=text] {
-	width: 400px;
-	height: auto;
-	font-size: 1.5em;
-	border: 2px solid #999999;
-	border-radius: 10px;
-}
-
-input[type=text]:focus {
-	border: 2px solid #444444;
-	outline: none;
-}
-
-.input[type=submit], .button {
-	font-size: 1.5em;
-	border: 2px solid #444444;
-	border-radius: 10px;
-	background-color: white;
-}
-
-#header {
-	margin: 0;
-	width: 100%;
-	height: 15vh;
-	min-height: 100px;
-	padding: 10px;
-	position: fixed;
-	z-index: 100;
-	top: 0;
-	right: 0;
-	background-color: #555555;
-	box-sizing: border-box;
-	color: white;
-	display: inline-block;
-}
-
-#contentWrapper {
-	clear: both;
-	margin: 0;
-	margin-top: 15vh;
-	padding: 20px;
-	width: 100%;
-	height: auto;
-	box-sizing: border-box;
-}
-
-#footer {
-	color: #555555;
-	width: auto;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 15px;
-	margin-top: 15px;
-	text-align: center;
-}
-
-.article {
-	box-sizing: border-box;
-	width: 90%;
-	margin-left: 0;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: 1px solid black;
-	padding: 10px;
-	border-radius: 10px;
-}
-
-.article:hover {
-	background-color: #eeeeee;
-}
-
-.articleTitle {
-	margin-bottom: 0;
-}
-
-.articleDescription {
-	margin-top: 5px;
-}
-
 .autocomplete {
 	/*the container must be positioned relative:*/
 	position: relative;
@@ -176,15 +57,15 @@ input[type=text]:focus {
 	color: #ffffff;
 }
 
-#loading {
-	position: fixed;
-	z-index: 500;
-	display: none;
-	height: 40vh;
-	width: auto;
-	box-sizing: border-box;
-	padding: 0;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30vh;
+.container {
+	margin-top: 75px;
+}
+
+#footer {
+	text-align: center;
+}
+
+#scoreWrapper {
+	margin-left: 20px;
+	margin-right: 0px;
 }
